@@ -1,12 +1,14 @@
-export default function Login() {
+import LoginView from 'components/Login'
+
+export default function Login () {
   return (
     <>
-      <img src="/login/top_logo.png" />
+      <LoginView loginType={1} />
     </>
   )
 }
 
-export async function getStaticProps() {
+export async function getStaticProps () {
   return {
     props: {
       showTabbar: false,

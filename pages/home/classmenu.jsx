@@ -1,4 +1,4 @@
-export default function ClassMenu() {
+export default function ClassMenu () {
   return (
     <>
       ClassMenu
@@ -6,7 +6,7 @@ export default function ClassMenu() {
   )
 }
 
-export async function getStaticProps() {
+export async function getStaticProps () {
   return {
     props: {
       showTabbar: true,

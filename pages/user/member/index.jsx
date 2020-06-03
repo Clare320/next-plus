@@ -1,4 +1,4 @@
-export default function Member() {
+export default function Member () {
   return (
     <div>
       Member
@@ -6,7 +6,7 @@ export default function Member() {
   )
 }
 
-export async function getStaticProps() {
+export async function getStaticProps () {
   return {
     props: {
       showTabbar: true,

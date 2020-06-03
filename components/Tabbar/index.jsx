@@ -2,7 +2,7 @@ import Router from 'next/router'
 import ImageAndTextButton from '../ImageAndTextButton'
 import styles from './index.less'
 
-export default function Tabbar({ selectedIndex = 0 }) {
+export default function Tabbar ({ selectedIndex = 0 }) {
   const items = [
     {
       title: '首页',

@@ -1,6 +1,4 @@
-import Tabbar from "../../components/Tabbar";
-
-export default function Community({ }) {
+export default function Community () {
   return (
     <div>
       Community
@@ -8,7 +6,7 @@ export default function Community({ }) {
   )
 }
 
-export async function getStaticProps() {
+export async function getStaticProps () {
   return {
     props: {
       showTabbar: true,

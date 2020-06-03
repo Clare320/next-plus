@@ -1,4 +1,4 @@
-export default function Cart() {
+export default function Cart () {
   return (
     <div>
       Cart
@@ -6,7 +6,7 @@ export default function Cart() {
   )
 }
 
-export async function getStaticProps() {
+export async function getStaticProps () {
   return {
     props: {
       showTabbar: true,

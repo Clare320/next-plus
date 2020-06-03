@@ -1,4 +1,4 @@
-export default function MemberCenter() {
+export default function MemberCenter () {
   return (
     <div>
       MemberCenter
@@ -6,7 +6,7 @@ export default function MemberCenter() {
   )
 }
 
-export async function getStaticProps() {
+export async function getStaticProps () {
   return {
     props: {
       showTabbar: true,
