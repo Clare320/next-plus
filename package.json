@@ -9,12 +9,19 @@
   },
   "dependencies": {
     "@zeit/next-less": "^1.0.1",
+    "axios": "^0.19.2",
+    "classnames": "^2.2.6",
     "less": "^3.11.1",
+    "mobx": "^5.15.4",
+    "mobx-react": "^6.2.2",
     "next": "9.4.4",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "swiper": "^5.4.2"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@babel/plugin-proposal-decorators": "^7.10.1",
     "postcss-pxtorem": "^5.1.1",
     "standard": "^14.3.4"
   }

@@ -1,18 +1,10 @@
-.top_bar {
-  width: 100%;
+.bar {
   height: 44px;
   background-color: #ff668e;
   display: flex;
   flex-direction: row;
   justify-content: start;
   align-items: center;
-  padding: 0;
-  position: sticky;
-  left: 0;
-  right: 0;
-  top: 0;
-  margin: auto;
-  max-width: 750px;
 }
 
 .div_score {
@@ -64,4 +56,69 @@
   margin-bottom: 1px;
   width: 18px;
   height: 18px;
+}
+
+.main {
+  width: 100%;
+}
+
+.header {
+  position: sticky;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 84px;
+  width: 100%;
+  max-width: 750px;
+  background-color: cadetblue;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  font-size: 15px;
+  height: 40px;
+  background-color: skyblue;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.menu::-webkit-scrollbar {
+  display: none;
+}
+
+.normal {
+  text-decoration: none;
+  margin: 0px 12px;
+  cursor: pointer;
+}
+
+.active {
+  border-bottom: 3px solid black;
+  padding: 0px 0px 3px 0px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.wraper {
+  background-color: white;
+}
+
+.tab {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.tag::-webkit-scrollbar {
+  display: none;
+}
+
+.page {
+  width: 750px;
+  max-width: 750px;
+  height: 1300px;
 }

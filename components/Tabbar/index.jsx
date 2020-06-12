@@ -1,8 +1,10 @@
 import Router from 'next/router'
+import { observer, inject } from 'mobx-react'
 import ImageAndTextButton from '../ImageAndTextButton'
 import styles from './index.less'
+// import { userStore } from 'store'
 
-export default function Tabbar ({ selectedIndex = 0 }) {
+const Tabbar = inject('store')(observer(({ selectedIndex = 0, store }) => {
   const items = [
     {
       title: '首页',
@@ -44,9 +46,20 @@ export default function Tabbar ({ selectedIndex = 0 }) {
     <div className={styles.container}>
       {
         items.map((item, index) => (
-          <ImageAndTextButton key={item.title + index} title={item.title} defaultImage={item.defaultImage} selectedImage={item.selectedImage} isSelected={index === selectedIndex} handler={handler.bind(this, item)} />
+          <ImageAndTextButton
+            key={item.title + index}
+            title={item.title}
+            defaultImage={item.defaultImage}
+            selectedImage={item.selectedImage}
+            isSelected={index === selectedIndex}
+            handler={handler.bind(this, item)}
+            showBadge={index === 3}
+            badge={store.cartGoodsNum}
+          />
         ))
       }
     </div>
   )
-}
+}))
+
+export default Tabbar
