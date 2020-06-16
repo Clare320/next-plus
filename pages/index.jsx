@@ -98,6 +98,9 @@ export default function Home () {
       <div className={styles.wraper}>
         <Banner data={imgs} />
       </div>
+      <div style={{ backgroundColor: 'cyan', height: '1000px' }}>
+        PlaceHolder
+      </div>
     </div>
   )
 }
