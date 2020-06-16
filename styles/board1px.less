@@ -89,3 +89,17 @@
     .min-device-pixel-ratio(scaleX(.5), scaleX(.33333));
   }
 }
+
+.border-right-1px(@color: #DDD, @style: solid) {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    border-right: 1Px @style @color;
+    transform-origin: 0 0;
+    .min-device-pixel-ratio(scaleX(.5), scaleX(.33333));
+  }
+}
