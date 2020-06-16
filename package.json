@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build-dev": "REACT_APP_ENV=development next build",
+    "build-stag": "REACT_APP_ENV=staging next build",
+    "build-prod": "REACT_APP_ENV=production next build",
     "start": "next start"
   },
   "dependencies": {
@@ -15,6 +17,7 @@
     "mobx": "^5.15.4",
     "mobx-react": "^6.2.2",
     "next": "9.4.4",
+    "next-build-id": "^3.0.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "swiper": "^5.4.2"
@@ -22,7 +25,10 @@
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.10.1",
     "@babel/plugin-proposal-decorators": "^7.10.1",
+    "@types/node": "^14.0.13",
+    "@types/react": "^16.9.36",
     "postcss-pxtorem": "^5.1.1",
-    "standard": "^14.3.4"
+    "standard": "^14.3.4",
+    "typescript": "^3.9.5"
   }
 }
