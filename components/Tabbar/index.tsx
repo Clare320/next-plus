@@ -2,10 +2,22 @@ import Router from 'next/router'
 import { observer, inject } from 'mobx-react'
 import ImageAndTextButton from '../ImageAndTextButton'
 import styles from './index.less'
-// import { userStore } from 'store'
+import { UserStore } from 'store'
 
-const Tabbar = inject('store')(observer(({ selectedIndex = 0, store }) => {
-  const items = [
+interface TabbarProp {
+  selectedIndex: number,
+  store?: UserStore
+}
+
+interface TabbarItem {
+  title: string,
+  defaultImage: string,
+  selectedImage: string,
+  path: string
+}
+
+const Tabbar = inject('store')(observer(({ selectedIndex = 0, store }: TabbarProp) => {
+  const items: TabbarItem[] = [
     {
       title: '首页',
       defaultImage: '/tabbar/tab_home.png',
@@ -38,7 +50,7 @@ const Tabbar = inject('store')(observer(({ selectedIndex = 0, store }) => {
     }
   ]
 
-  const handler = (item) => {
+  const handler = (item: TabbarItem) => {
     Router.push(item.path)
   }
 
@@ -52,9 +64,9 @@ const Tabbar = inject('store')(observer(({ selectedIndex = 0, store }) => {
             defaultImage={item.defaultImage}
             selectedImage={item.selectedImage}
             isSelected={index === selectedIndex}
-            handler={handler.bind(this, item)}
+            handler={() => { handler(item) }}
             showBadge={index === 3}
-            badge={store.cartGoodsNum}
+            badge={store!.cartGoodsNum}
           />
         ))
       }

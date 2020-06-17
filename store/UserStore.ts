@@ -7,7 +7,7 @@ useStaticRendering(typeof window === 'undefined')
 
 let store
 
-class UserStore {
+export class UserStore {
   @observable cartGoodsNum = 0
 
   hydrate = (data) => {
@@ -17,7 +17,7 @@ class UserStore {
   }
 }
 
-function initializeStore(initialData = null) {
+function initializeStore (initialData = null) {
   const _store = store ?? new UserStore()
 
   if (initialData) {
@@ -35,8 +35,7 @@ function initializeStore(initialData = null) {
   return _store
 }
 
-export function useStore(initialState) {
+export function useStore (initialState) {
   const store = useMemo(() => initializeStore(initialState), [initialState])
   return store
 }
-

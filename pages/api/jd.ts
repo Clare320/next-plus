@@ -1,3 +1,5 @@
+import { NextApiRequest, NextApiResponse } from 'next'
+
 const JD_Data = {
     //banner
     banner: [
@@ -91,7 +93,7 @@ const JD_Data = {
 
 }
 
-export default (_req:any, res:any) => {
+export default (req: NextApiRequest, res: NextApiResponse) => {
     res.statusCode = 200
     res.json(JD_Data)
 }

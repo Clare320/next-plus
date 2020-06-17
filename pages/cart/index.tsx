@@ -1,13 +1,20 @@
+import { FC } from 'react'
+import { GetStaticProps } from 'next'
 import { inject } from 'mobx-react'
+import { UserStore } from 'store'
 
-const Cart = inject('store')(
-  ({ store }) => {
+interface CartProp {
+  store?: UserStore
+}
+
+const Cart: FC<CartProp> = inject('store')(
+  ({ store }: CartProp) => {
     const increaseGoodsNum = () => {
-      store.cartGoodsNum += 1
+      store!.cartGoodsNum += 1
     }
 
     const decreaseGoodsNum = () => {
-      store.cartGoodsNum -= 1
+      store!.cartGoodsNum -= 1
     }
 
     return (
@@ -25,7 +32,7 @@ const Cart = inject('store')(
 
 export default Cart
 
-export async function getStaticProps () {
+export const getStaticProps: GetStaticProps = async function () {
   return {
     props: {
       showTabbar: true,

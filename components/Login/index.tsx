@@ -4,17 +4,17 @@ import QuickLoginForm from './QuickLoginForm'
 import LoginForm from './LoginForm'
 import Router from 'next/router'
 import { useEffect } from 'react'
-
-export default function LoginView ({ loginType }) {
+import { LoginMode } from './login'
+export default function LoginView ({ mode }: LoginMode) {
   useEffect(() => {
-    loginType === 0 ? Router.prefetch('/account/login') : Router.prefetch('/account/quicklogin')
+    mode === 0 ? Router.prefetch('/account/login') : Router.prefetch('/account/quicklogin')
   }, [])
 
   return (
     <div>
       <img src='/login/top_logo.png' style={{ width: '100%' }} />
-      <LoginTab loginType={loginType} />
-      {loginType === 0
+      <LoginTab mode={mode} />
+      {mode === 0
         ? <QuickLoginForm />
         : <LoginForm />}
       <ThirdLogin />

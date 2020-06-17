@@ -1,11 +1,9 @@
 import styles from './index.less'
 import Request from 'utils/request'
 
-export default function QuickLoginForm () {
+export default function QuickLoginForm() {
   const getCode = () => {
-    console.log('get code --->')
-
-    const phoneEle = document.getElementById('phone')
+    const phoneEle: HTMLInputElement = document.getElementById('phone') as HTMLInputElement
     const phone = phoneEle.value
     if (phone === undefined || phone.length < 11) {
       window.alert('请输入正确手机号')

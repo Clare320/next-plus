@@ -3,8 +3,17 @@ import { useEffect, useState } from 'react'
 import cn from 'classnames'
 import styles from './index.less'
 
-export default function Banner ({ data }) {
-  const [mySwiper, setMySwiper] = useState(null)
+interface BannerItem {
+  ImageUrl: string,
+  TargetUrl: string
+}
+
+interface BannerList {
+  data: BannerItem[]
+}
+
+export default function Banner({ data }: BannerList) {
+  const [mySwiper, setMySwiper] = useState<Swiper>()
 
   useEffect(() => {
     const tmpSwiper = new Swiper('.swiper-container', {
@@ -22,8 +31,8 @@ export default function Banner ({ data }) {
           {
             data.map((item, index) => (
               <div key={'banner' + index} className={cn('swiper-slide', styles.swiper_li)}>
-                <a href={item.link}>
-                  <img className={styles.swiper_img} src={item.url} />
+                <a href={item.TargetUrl}>
+                  <img className={styles.swiper_img} src={item.ImageUrl} />
                 </a>
               </div>
             ))

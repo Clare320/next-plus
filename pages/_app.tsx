@@ -1,21 +1,22 @@
+import { AppProps } from 'next/app'
 import Head from 'next/head'
-import globalStyles from 'styles/global.less'
-import Tabbar from '../components/Tabbar'
+import styles from './app.less'
+import Tabbar from 'components/Tabbar'
 import { Provider } from 'mobx-react'
 import { useStore } from 'store'
 
-function MyApp ({ Component, pageProps }) {
+function MyApp({ Component, pageProps } : AppProps) {
   const { showTabbar, tabbarIndex, title, initialState } = pageProps
   const store = useStore(initialState)
 
   return (
     <Provider store={store}>
-      <div className={globalStyles.container} style={showTabbar ? { padding: '0px 0px 55px 0px' } : null}>
+      <div className={styles.container} style={showTabbar ? { padding: '0px 0px 55px 0px' } : undefined}>
         <Head>
           <meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no' />
           <title>{title || '可得眼镜网'}</title>
         </Head>
-        <div className={globalStyles.main}>
+        <div className={styles.main}>
           <Component {...pageProps} />
         </div>
         {showTabbar && <Tabbar selectedIndex={tabbarIndex} />}

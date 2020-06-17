@@ -1,7 +1,13 @@
 import Link from 'next/link'
-import styles from 'styles/member.less'
+import styles from './index.less'
 
-function LinkItem ({ href, icon, title }) {
+interface LinkItemProp {
+  href: string,
+  icon: string,
+  title: string
+}
+
+function LinkItem({ href, icon, title }: LinkItemProp) {
   return (
     <Link href={href}>
       <div className={styles.link_container}>
@@ -12,7 +18,7 @@ function LinkItem ({ href, icon, title }) {
   )
 }
 
-export default function Member () {
+export default function Member() {
   const options = [
     { option: '余额', value: 0.00 },
     { option: '优惠券', value: 0 },
@@ -136,7 +142,7 @@ export default function Member () {
           {
             features.map((item, index) => (
               <div className={styles.more} key={'service' + index} style={{ borderRight: index === (features.length - 1) ? 'none' : '0.5px solid #ebebeb' }}>
-                <LinkItem name={styles.more} title={item.title} icon={item.icon} href={item.link} />
+                <LinkItem title={item.title} icon={item.icon} href={item.link} />
               </div>
             ))
           }
@@ -146,7 +152,7 @@ export default function Member () {
   )
 }
 
-export async function getStaticProps () {
+export async function getStaticProps() {
   return {
     props: {
       showTabbar: true,

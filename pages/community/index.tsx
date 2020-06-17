@@ -1,4 +1,6 @@
-export default function Community () {
+import { GetStaticProps } from 'next'
+
+export default function Community() {
   return (
     <div>
       Community
@@ -6,7 +8,7 @@ export default function Community () {
   )
 }
 
-export async function getStaticProps () {
+export const getStaticProps: GetStaticProps = async function () {
   return {
     props: {
       showTabbar: true,
