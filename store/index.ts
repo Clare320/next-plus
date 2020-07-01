@@ -1,3 +1,3 @@
-import { useStore, UserStore } from './UserStore'
+import { useStore, UserStore, useContextStore } from './UserStore'
 
-export { useStore, UserStore }
+export { useStore, UserStore, useContextStore }

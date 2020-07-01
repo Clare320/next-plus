@@ -4,6 +4,7 @@ import Router from 'next/router'
 import Banner from 'components/Banner'
 import styles from './index.less'
 import cn from 'classnames'
+import useSWR from 'swr'
 
 interface HomeTopBarProp {
   score: number
@@ -37,74 +38,74 @@ function HomeTopBar({ score }: HomeTopBarProp) {
   )
 }
 
-function Menu() {
+interface Channel {
+  Name: string,
+  TargetUrl: string,
+}
+
+interface MenuProp {
+  channels: Channel[],
+  handler: (item: Channel, index: number) => void
+}
+
+function Menu({ channels, handler }: MenuProp) {
   const [activeIndex, setActiveIndex] = useState(0)
 
-  const items = [
-    '首页',
-    '年中狂欢提前购',
-    '海淘',
-    '框架',
-    '新品',
-    '爱配镜'
-  ]
-
-  const handleClick = (index: number) => {
+  const handleClick = (channel: Channel, index: number) => {
     setActiveIndex(index)
+    handler(channel, index)
   }
 
+  // TODO: - 无法横向滚动
   return (
-    <div className={styles.menu}>
-      {
-        items.map((item, index) => (
-          <span
-            key={item + index}
-            className={cn(styles.normal, { [`${styles.active}`]: index === activeIndex })}
-            onClick={() => { handleClick(index) }}
-          >
-            {item}
-          </span>
-        ))
-      }
+    <div className={styles.menu_outer_container}>
+      <div className={styles.menu_inner_container}>
+        <div className={styles.menu}>
+        {
+          channels.map((item, index) => (
+            <span
+              key={item.Name + index}
+              className={cn(styles.normal, { [`${styles.active}`]: index === activeIndex })}
+              onClick={() => { handleClick(item, index) }}
+            >
+              {item.Name}
+            </span>
+          ))
+        }
+        </div>
+      </div>
     </div>
   )
 }
 
 export default function Home() {
-  const imgs = [
-    {
-      TargetUrl: 'https://m.kede.com/event/lyayr2020',
-      ImageUrl: 'https://pic.keede.com/AppImages/b0dd7da0-edb3-410d-8246-df46aafd3005.jpg?v=2020060301'
-    },
-    {
-      TargetUrl: 'https://m.kede.com/event/lyayr2020618',
-      ImageUrl: 'https://pic.keede.com/AppImages/d41f5a34-cfee-45d3-bab9-16613eeae8ee.jpg?v=2020060301'
-    },
-    {
-      TargetUrl: 'https://m.kede.com/lensvery.html',
-      ImageUrl: 'https://pic.keede.com/AppImages/9193777c-12d7-4909-9cb8-3bfaafd8a127.jpg?v=2020060301'
-    },
-    {
-      TargetUrl: 'https://m.kede.com/event/rt2020618',
-      ImageUrl: 'https://pic.keede.com/AppImages/fd5382c5-ffe4-4567-bfe0-1d416d111eca.jpg?v=2020060301'
-    },
-    {
-      TargetUrl: 'https://m.kede.com/event/kj2020618',
-      ImageUrl: 'https://pic.keede.com/AppImages/95af3f83-5f3a-4d51-88d3-878adb83768f.jpg?v=2020060301'
+  const { data, error } = useSWR('/api/home')
+
+  if (data === undefined || data === null) {
+    return <div>Loading...</div>
+  }
+
+  const {
+    Data: {
+      SearchKeyword, ChannelList, BannerList
     }
-  ]
+  } = data
+
+  const channelHandler = (item: Channel, index: number) => {
+
+  }
 
   return (
     <div className={styles.main}>
       <div className={styles.header}>
         <HomeTopBar score={0} />
-        <Menu />
+        <Menu channels={ChannelList} handler={channelHandler} />
       </div>
       <div className={styles.wraper}>
-        <Banner data={imgs} />
+        <Banner data={BannerList} />
       </div>
       <div style={{ backgroundColor: 'cyan', height: '1000px' }}>
-        PlaceHolder
+        {data ? data.ServerIp : error}
       </div>
     </div>
   )

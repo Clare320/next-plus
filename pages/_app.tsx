@@ -1,27 +1,44 @@
+import { FC } from 'react'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
+import 'normalize.css'
 import styles from './app.less'
 import Tabbar from 'components/Tabbar'
 import { Provider } from 'mobx-react'
 import { useStore } from 'store'
+import { SWRConfig } from 'swr'
+import axiosInstance from 'utils/request'
 
-function MyApp({ Component, pageProps } : AppProps) {
-  const { showTabbar, tabbarIndex, title, initialState } = pageProps
+const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
+  const { showTabbar = true, tabbarIndex = 0, title, initialState } = pageProps
   const store = useStore(initialState)
 
   return (
-    <Provider store={store}>
-      <div className={styles.container} style={showTabbar ? { padding: '0px 0px 55px 0px' } : undefined}>
-        <Head>
-          <meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no' />
-          <title>{title || '可得眼镜网'}</title>
-        </Head>
-        <div className={styles.main}>
-          <Component {...pageProps} />
+    <SWRConfig
+      value={{
+        fetcher: (url, type = 'GET', params) => {
+          if (type === 'GET') {
+            return axiosInstance.get(url).then(res => {
+              return res.data
+            })
+          } else if (type === 'POST') {
+            return axiosInstance.post(url, params && { params }).then(res => res.data)
+          }
+        }
+      }}
+    >
+      <Provider store={store}>
+        <div className={styles.container} style={showTabbar ? { padding: '0px 0px 55px 0px' } : undefined}>
+          <Head>
+            <title>{title || '可得眼镜网'}</title>
+          </Head>
+          <div className={styles.main}>
+            <Component {...pageProps} />
+          </div>
+          {showTabbar && <Tabbar selectedIndex={tabbarIndex} />}
         </div>
-        {showTabbar && <Tabbar selectedIndex={tabbarIndex} />}
-      </div>
-    </Provider>
+      </Provider>
+    </SWRConfig>
   )
 }
 
