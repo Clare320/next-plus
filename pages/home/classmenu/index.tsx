@@ -3,6 +3,7 @@ import { GetStaticProps } from 'next'
 import cn from 'classnames'
 import axiosInstance from 'utils/request'
 import styles from './index.less'
+import NavigationBar from 'components/NavigationBar'
 
 interface AppClassDTO {
   ClassID: string,
@@ -77,30 +78,33 @@ const ClassMenu: FC<ClassMenuProps> = ({ data }) => {
   }
 
   return (
-    <div className={styles['classmenu__container']}>
-      <ul className={styles['left-menu']}>
-        {
-          leftMenus.map((item, index) => (
-            <LeftMenuCell
-              key={'menucell' + index}
-              title={item}
-              index={index}
-              isSelected={index === selectedIndex}
-              callback={handleSelectMenu}
-            />
-          ))
-        }
-      </ul>
-      <div className={styles['goods-list']}>
-        
+    <>
+      <NavigationBar title='11' />
+      <div className={styles['classmenu__container']}>
+        <ul className={styles['left-menu']}>
+          {
+            leftMenus.map((item, index) => (
+              <LeftMenuCell
+                key={'menucell' + index}
+                title={item}
+                index={index}
+                isSelected={index === selectedIndex}
+                callback={handleSelectMenu}
+              />
+            ))
+          }
+        </ul>
+        <div className={styles['goods-list']}>
+
           {
             childMenu.map((item, index) => (
               <GoodsListSection key={'section' + index} {...item} />
             ))
           }
-       
+
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 
