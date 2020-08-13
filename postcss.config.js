@@ -13,8 +13,12 @@ module.exports = {
       features: {
         'custom-properties': false
       }
-    },
-    'postcss-pxtorem': {
+    }
+  }
+}
+
+/**
+ *  'postcss-pxtorem': {
       rootValue: 75,
       unitPrecision: 5,
       propList: ['*'],
@@ -22,16 +26,4 @@ module.exports = {
       selectorBlackList: ['html', 'body'],
       exclude: /node_modules/i
     }
-  }
-}
-
-/**
- *  px2rem({
-      rootValue: 75,
-      unitPrecision: 5,
-      propList: ['*'],
-      minPixelValue: 1,
-      selectorBlackList: ['html', 'body'],
-      exclude: /node_modules/i
-    })
  */
