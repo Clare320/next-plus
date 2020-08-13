@@ -9,10 +9,13 @@
     ["@babel/plugin-proposal-class-properties", {
       "loose": true
     }],
-    [
-      "react-css-modules", {
-        "webpackHotModuleReloading": true
-      }
-    ]
+    ["react-css-modules", {
+      "webpackHotModuleReloading": true
+    }],
+    ["import", {
+      "libraryName": "antd",
+      "libraryDirectory": "es",
+      "style": true
+    }]
   ]
 }

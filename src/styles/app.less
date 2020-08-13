@@ -1,0 +1,24 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+html {
+  /*
+  rem 单位换算：定为 75px 只是方便运算，750px-75px、640-64px、1080px-108px，如此类推
+  @vw_fontsize: 75; e.g：以iPhone6尺寸设计，根元素大小基准值
+  @vw_design: 750;
+  font-size: (@vw_fontsize / (@vw_design / 2)) * 100vw;
+  */
+  font-size: 20vw;
+}
+
+
+// body 也增加最大最小宽度限制，避免默认100%宽度的 block 元素跟随 body 而过大过小
+body {
+  font-size: 16px;
+  margin: 0 auto;
+}

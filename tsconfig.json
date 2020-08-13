@@ -17,7 +17,7 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "esnext",
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "experimentalDecorators": true
   },
   "exclude": ["node_modules"],
