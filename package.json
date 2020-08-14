@@ -7,7 +7,7 @@
     "build-dev": "REACT_APP_ENV=development next build",
     "build-stag": "REACT_APP_ENV=staging next build",
     "build-prod": "REACT_APP_ENV=production next build",
-    "start": "next start"
+    "start": "NODE_ENV=production node server.js"
   },
   "standardx": {
     "parser": "@typescript-eslint/parser",
@@ -28,10 +28,15 @@
     "axios": "^0.19.2",
     "babel-plugin-react-css-modules": "^5.2.6",
     "classnames": "^2.2.6",
+    "compress-brotli": "^1.2.2",
+    "etag": "^1.8.1",
+    "express": "^4.17.1",
     "js-cookie": "^2.2.1",
+    "lru-cache": "^6.0.0",
     "mobx": "^5.15.4",
     "mobx-react": "^6.2.2",
     "next": "^9.5.2",
+    "normalize-url": "^5.1.0",
     "normalize.css": "^8.0.1",
     "postcss-flexbugs-fixes": "^4.2.1",
     "postcss-preset-env": "^6.7.0",

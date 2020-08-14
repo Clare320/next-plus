@@ -1,12 +1,10 @@
 import axios from 'axios'
-import cookies from 'js-cookie'
 import config from 'config'
 import httpStatus from './status'
 
-const tokenCookieKey = 'KEDESHOPING8b44c296683e'
-
 const axiosInstance = axios.create({
   baseURL: config.baseURL,
+  //NOTE: header全局配置
   headers: {
     salePlatformID: config.salePlatformID
   },
@@ -15,12 +13,7 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   config => {
-    const headers = config.headers
-    const oldToken = headers.token
-    const token = cookies.get(tokenCookieKey)
-    if (headers && token && token.length > 0 && oldToken !== token) {
-      config.headers.token = token
-    }
+    //TODO: -- 自定义对header统一处理
     return config
   },
   error => {
@@ -34,7 +27,7 @@ axiosInstance.interceptors.response.use(
     if (error && error.response) {
       switch (error.response.status) {
         case 401:
-          window.location.href = window.origin + '/login'
+          //NOTE: 自定义需登录操作处理
           break
         default:
           error.message = httpStatus[error.response.status]

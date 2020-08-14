@@ -3,7 +3,7 @@ import { AppProps } from 'next/app'
 import Head from 'next/head'
 import 'normalize.css'
 import { UseRequestProvider } from '@ahooksjs/use-request'
-import { fetcher } from 'http-request'
+import { fetcher } from 'http-client'
 import 'styles/app.less'
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
