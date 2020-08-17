@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 import styles from 'styles/index.less'
 
 const Home = () => {
@@ -25,6 +26,12 @@ const Home = () => {
           </div>
         ))
       }
+      <Link href='/testcsr'>
+        <button className={styles.link_button}>Link-Button跳转</button>
+      </Link>
+      <Link href='/testcsr'>
+        <a className={styles.link}>Link跳转CSR</a>
+      </Link>
     </div>
   )
 }
