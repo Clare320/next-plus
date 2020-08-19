@@ -8,7 +8,7 @@
     "build-stag": "REACT_APP_ENV=staging next build",
     "build-prod": "REACT_APP_ENV=production next build",
     "start": "NODE_ENV=production node server.js",
-    "pm2start": "NODE_LOG_DIR=/home/userlog/alinode ENABLE_NODE_LOG=YES pm2 start ecosystem.config.js --env production"
+    "pm2start": "NODE_LOG_DIR='/home/userlog/alinode' ENABLE_NODE_LOG=YES pm2 start ecosystem.config.js --env production"
   },
   "standardx": {
     "parser": "@typescript-eslint/parser",

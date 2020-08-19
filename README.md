@@ -58,7 +58,7 @@
 
 ### 路由跳转
 
-在客户端支持`Router`，`useRouter`，`Link`，`withRouter`等获取路由跳转。在服务端使用`res.writerHeader(301, {Location: '重定向地址'})`来处理。
+在客户端支持`Router`，`useRouter`，`Link`，`withRouter`等获取路由跳转。在服务端使用`res.writeHead(301, {Location: '重定向地址'})`来处理。
 
 ## 请求
 
