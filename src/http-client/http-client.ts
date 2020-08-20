@@ -2,7 +2,7 @@ import axios from 'axios'
 import config from 'config'
 import httpStatus from './status'
 
-const axiosInstance = axios.create({
+const httpClient = axios.create({
   baseURL: config.baseURL,
   //NOTE: header全局配置
   headers: {
@@ -11,7 +11,7 @@ const axiosInstance = axios.create({
   timeout: 3000
 })
 
-axiosInstance.interceptors.request.use(
+httpClient.interceptors.request.use(
   config => {
     //TODO: -- 自定义对header统一处理
     return config
@@ -21,7 +21,7 @@ axiosInstance.interceptors.request.use(
   }
 )
 
-axiosInstance.interceptors.response.use(
+httpClient.interceptors.response.use(
   res => res,
   error => {
     if (error && error.response) {
@@ -39,4 +39,4 @@ axiosInstance.interceptors.response.use(
   }
 )
 
-export default axiosInstance
+export default httpClient

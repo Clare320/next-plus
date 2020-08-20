@@ -1,4 +1,4 @@
-import httpClient from './axiosInstance'
+import httpClient from './http-client'
 import fetcher from './fetcher'
 
 export default httpClient
