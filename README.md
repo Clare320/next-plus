@@ -169,17 +169,128 @@ server.get('/about', (req, res) => {
 
 > 多个页面需要缓存，可以利用将页面放到数组里遍历处理。
 
+## file-loader打包图片
+
+### 1. 在根目录创建`next-file-loader.config.js`，将以下代码复制到新建文件内
+
+```js
+module.exports = (nextConfig = {}) => {
+  return Object.assign({}, nextConfig, {
+    webpack: (config, options) => {
+      const { isServer } = options
+      nextConfig = Object.assign({ assetPrefix: '' }, nextConfig)
+      config.module.rules.push({
+        test: /\.(jpe?g|png|svg|gif|ico|webp|jp2)$/i,
+        loader: 'file-loader',
+        options: {
+          name: '[name]_[contenthash].[ext]',
+          publicPath: `${nextConfig.assetPrefix}/_next/static/images/`,
+          outputPath: `${isServer ? '../' : ''}static/images/`
+        }
+      })
+      return config
+    }
+  })
+}
+
+```
+
+### 2. 在`next.config.js`使用
+
+先导入`next-file-loader.config.js`
+
+```js
+const withFileLoader = require('./next-file-loader.config')
+```
+
+修改当前`next.config.js`的exports
+
+```js
+module.exports = withFileLoader(withCSS(withLess({/* 现有配置*/})))
+```
+
+### 3. 安装`file-loader`
+
+```js
+npm install file-loader --save-dev
+```
+
+### 4. 在`typings.d.ts`文件中添加相应声明
+
+```ts
+declare module "*.jpeg" {
+  const value: string;
+  export = value;
+}
+
+declare module "*.jpg" {
+  const value: string;
+  export = value;
+}
+
+declare module "*.png" {
+  const value: string;
+  export = value;
+}
+
+declare module "*.svg" {
+  const value: string;
+  export = value;
+}
+
+declare module "*.gif" {
+  const value: string;
+  export = value;
+}
+
+declare module "*.ico" {
+  const value: string;
+  export = value;
+}
+
+declare module "*.webp" {
+  const value: string;
+  export = value;
+}
+
+declare module "*.jp2" {
+  const value: string;
+  export = value;
+}
+```
+
+### 5. 使用
+
+比如在src目录下创建`assets`文件夹，放进一个`profile.jpg`。那使用时可以采用以下两种方式：
+
+```tsx
+import profile from 'assets/profile.jpg'
+
+<img src={profile}/>
+```
+
+或者
+
+```tsx
+<img src={require('assets/profile.jpg').default}/>
+```
+
+### 6. 类型拓展
+
+首先在`next-file-loader.config.js`中test语句中添加对应类型。  
+其次在`typings.d.ts`中按已有类型声明格式添加相应声明。
+
 ## 启动运行
 
 开发调试
 
-```
+```js
 npm run dev
 ```
 
 打包
 
-```
+```js
 npm run build-dev
 ```
 
@@ -187,6 +298,6 @@ npm run build-dev
 
 使用server.js启动
 
-```
+```js
 npm start
 ```

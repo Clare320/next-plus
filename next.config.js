@@ -1,8 +1,9 @@
 const withCSS = require('@zeit/next-css')
 const withAntdLess = require('./next-antd-less.config')
+const withFileLoader = require('./next-file-loader.config')
 
-module.exports = withCSS(withAntdLess({
-  /*disable nextjs x-powered-by header*/
+module.exports = withFileLoader(withCSS(withAntdLess({
+  /* disable nextjs x-powered-by header */
   poweredByHeader: false,
   /* nextjs gzip 交给nginx来处理，减轻server的压力 */
   compress: false,
@@ -18,4 +19,4 @@ module.exports = withCSS(withAntdLess({
   webpack: (config) => {
     return config
   }
-}))
+})))
